@@ -6,14 +6,21 @@ const email = document.querySelector("#email"),
     description = document.querySelector("#description"),
     submitBtn = document.querySelector("button");
 
-submitBtn.addEventListener("click", submit);
+submitBtn.addEventListener("click", report);
 
-function submit() {
+function report() {
     const req = {
         email: email.value,
         inGameID: inGameID.value,
         subject: subject.value,
         description: description.value,
     };
-    console.log(req);
+    
+    fetch("/report", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(req),
+    });
 }
